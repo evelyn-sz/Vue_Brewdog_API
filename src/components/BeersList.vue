@@ -1,7 +1,8 @@
 <template lang="html">
     <!-- <div id="beersList"> -->
         <select  v-on:change="handleSelect" v-model="selectedBeer">
-            <option v-for: "beer in beers" :value="beer">{{beer.name}}</option>
+            <!-- <option v-for="(beer, index) in beers" :value="beer" :key="index"></option> -->
+            <option v-for="beer in beers" :value="beer" >{{beer.name}}</option>
         </select>
     <!-- </div> -->
 </template>
@@ -14,12 +15,11 @@ export default {
     props: ["beers"],
     data() {
         return {
-            "selectedBeer": {}
-           
+            "selectedBeer": {}         
         }
     },
     methods: {
-        handleSelect: function() {
+        handleSelect() {
             eventBus.$emit('beer-selected', this.selectedBeer)
         }
     }
